@@ -265,11 +265,12 @@ class _RegisterAppState extends State<RegisterApp> {
             msg:
                 "Registration Success. Please check your email for verification link",
             toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+            
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.orange[100],
+          textColor: Colors.white,
+          fontSize: 16.0);
         
        FocusScope.of(context).unfocus();
         _newpasswordb.clear();
@@ -280,11 +281,11 @@ class _RegisterAppState extends State<RegisterApp> {
         Fluttertoast.showToast(
             msg: "Registration Failed",
             toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.orange[100],
+          textColor: Colors.white,
+          fontSize: 16.0);
       
       }
     });

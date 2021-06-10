@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gohcase/adminaddProduct.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Register.dart';
+import 'User.dart';
+import 'adminmainscreen.dart';
 import 'mainscreen.dart';
 
 class Login extends StatefulWidget {
@@ -64,9 +67,9 @@ class _LoginState extends State<Login> {
                             value: _remember,
                             onChanged: (bool value) {
                               _changestatus(value);
-                             setState(() {
-                                _remember =value;
-                              });
+                             //setState(() {
+                               // _remember =value;
+                            //  });
                              
                              
                              
@@ -131,7 +134,7 @@ class _LoginState extends State<Login> {
             fontSize: 16.0);
        
       } else {
-        Fluttertoast.showToast(
+                Fluttertoast.showToast(
             msg: "Login Success",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
@@ -139,8 +142,22 @@ class _LoginState extends State<Login> {
             backgroundColor: Colors.orange[100],
             textColor: Colors.white,
             fontSize: 16.0);
+            List udata = response.body.split(",");
+            User user=User(
+              username: udata[1],
+              email: _useremail,
+              password: _userpassword,
+              date:udata[2],
+              status: udata[3],
+            );
+            if (udata[3]=="User"){
         Navigator.push(
-            context, MaterialPageRoute(builder: (content) => MainScreen()));
+            context, MaterialPageRoute(builder: (content) => MainScreen(user: user)));
+            }else {
+               Navigator.push(
+            context, MaterialPageRoute(builder: (content) => AddProducts(user: user)));
+            //do not forget to change back
+            }
       }
     });
   }
@@ -226,7 +243,7 @@ class _LoginState extends State<Login> {
   );}
   Future<void> storeinput(bool value, String email, String password) async {
     preferences = await SharedPreferences.getInstance();
-    if (value == true) {
+    if (value ) {
       await preferences.setString("email", email);
       await preferences.setString("password", password);
       await preferences.setBool("checked", value);
@@ -238,6 +255,7 @@ class _LoginState extends State<Login> {
           backgroundColor: Colors.orange[100],
           textColor: Colors.white,
           fontSize: 16.0);
+          return;
     } else {
       await preferences.setString("email", "");
       await preferences.setString("password", "");
@@ -262,12 +280,12 @@ class _LoginState extends State<Login> {
   Future<void> loadinput() async {
     preferences = await SharedPreferences.getInstance();
     String _uemail = preferences.getString("email") ?? '';
-    String upassword = preferences.getString("password") ?? '';
+    String _upassword = preferences.getString("password") ?? '';
     _remember = preferences.getBool("checked") ?? false;
 
     setState(() {
       _email.text = _uemail;
-      _password.text = upassword;
+      _password.text = _upassword;
     });
   }
 
@@ -288,7 +306,7 @@ class _LoginState extends State<Login> {
     }
     setState(() {
       _remember = value;
-      storeinput(value, _uemail, _upassword);
+      storeinput(value, _uemail,_upassword);
     });
   }
 }
