@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Register.dart';
 import 'User.dart';
 import 'adminmainscreen.dart';
+import 'dashboard.dart';
 import 'mainscreen.dart';
 
 class Login extends StatefulWidget {
@@ -19,11 +20,16 @@ class _LoginState extends State<Login> {
   TextEditingController _password = new TextEditingController();
   SharedPreferences preferences;
   @override
+  void initState() {
+   loadinput();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
-        resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
         body: Center(
             child: Stack(children: <Widget>[
           Container(
@@ -149,13 +155,16 @@ class _LoginState extends State<Login> {
               password: _userpassword,
               date:udata[2],
               status: udata[3],
+              id : udata[4],
+              address: udata[5],
+              phonenum: udata[6],
             );
             if (udata[3]=="User"){
         Navigator.push(
             context, MaterialPageRoute(builder: (content) => MainScreen(user: user)));
             }else {
                Navigator.push(
-            context, MaterialPageRoute(builder: (content) => AddProducts(user: user)));
+            context, MaterialPageRoute(builder: (content) => Dashpage(user: user)));
             //do not forget to change back
             }
       }

@@ -1,9 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gohcase">
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
    <application
         android:requestLegacyExternalStorage="true"
         android:label="gohcase"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        >
+        
+   <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDWWlyI4K_nG776NoXfPMQmNd1yZT_FWfU"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -39,4 +46,4 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-</manifest>
+ </manifest>

@@ -24,13 +24,25 @@ dependencies:
   flutter:
     sdk: flutter
   cached_network_image: ^3.0.0
+  camera: null
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
+  flutter_cache_manager: ^3.1.2
   fluttertoast: ^8.0.6
+  geocoder: ^0.2.1
+  geocoding: ^2.0.0
+  geolocator: ^7.2.0+1
+  google_maps_flutter: ^2.0.6
   hexcolor: ^2.0.3
   http: ^0.13.1
+  image_cropper: ^1.4.1
   image_picker: ^0.7.5
+  location: ^4.3.0
+  path: null
+  path_provider: null
   progress_dialog: ^1.2.4
   shared_preferences: ^2.0.5
+  webview_flutter: ^2.0.9
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,6 +62,12 @@ flutter:
     - assets/images/japanese.jpg
     - assets/images/cover.png
     - assets/images/colourful.jpg
+    - assets/images/defaultpic.jpg
+    - assets/images/noproduct.jpg
+    - assets/images/numusers.jpg
+    - assets/images/producticon.jpg
+    - assets/images/History-Icon.png
+    - assets/images/paying.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
